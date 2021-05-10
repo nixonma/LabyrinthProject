@@ -4,12 +4,13 @@ import main.model.Node;
 
 import java.util.ArrayList;
 
-public class RecursiveBackTrackingLabyrith extends Labyrinth {
+public class RecursiveBackTrackingLabyrinth extends Labyrinth {
 
-    // An implementation of what I believe to be a recursive backtracking algorithm
-    // re-purposed from the first algorithm in "RecursiveBackTrackingLabyrith" class
+    // An implementation of a recursive backtracking algorithm
+    // this algorithm has a size limit due to the recursive
+    // nature of the generation function
 
-    public RecursiveBackTrackingLabyrith(int s) {
+    public RecursiveBackTrackingLabyrinth(int s) {
         super(s);
     }
 

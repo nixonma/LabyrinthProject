@@ -13,14 +13,14 @@ public class Graph {
     }
 
     public void addNode(Node n) {
-        nodes[n.getR()][n.getC()] = n;
-        if (n.getTreeNum() < 0) {
-            if (treeNodesMap.get(n.getTreeNum()) != null) {
-                treeNodesMap.get(n.getTreeNum()).add(n);
+        nodes[n.row][n.col] = n;
+        if (n.treeNum < 0) {
+            if (treeNodesMap.get(n.treeNum) != null) {
+                treeNodesMap.get(n.treeNum).add(n);
             } else {
                 ArrayList<Node> nodes = new ArrayList<>();
                 nodes.add(n);
-                treeNodesMap.put(n.getTreeNum(), nodes);
+                treeNodesMap.put(n.treeNum, nodes);
             }
         }
     }
@@ -32,24 +32,24 @@ public class Graph {
 
     public ArrayList<Node> getUnvisitedAdjacent(Node n) {
         ArrayList<Node> options = new ArrayList<>();
-        if (n.getR() < nodes.length - 1) {
-            if (!nodes[n.getR() + 1][n.getC()].getVisited()) {
-                options.add(nodes[n.getR() + 1][n.getC()]);
+        if (n.row < nodes.length - 1) {
+            if (!nodes[n.row + 1][n.col].hasBeenVisited) {
+                options.add(nodes[n.row + 1][n.col]);
             }
         }
-        if (n.getR() > 0) {
-            if (!nodes[n.getR() - 1][n.getC()].getVisited()) {
-                options.add(nodes[n.getR() - 1][n.getC()]);
+        if (n.row > 0) {
+            if (!nodes[n.row - 1][n.col].hasBeenVisited) {
+                options.add(nodes[n.row - 1][n.col]);
             }
         }
-        if (n.getC() < nodes.length - 1) {
-            if (!nodes[n.getR()][n.getC() + 1].getVisited()) {
-                options.add(nodes[n.getR()][n.getC() + 1]);
+        if (n.col < nodes.length - 1) {
+            if (!nodes[n.row][n.col + 1].hasBeenVisited) {
+                options.add(nodes[n.row][n.col + 1]);
             }
         }
-        if (n.getC() > 0) {
-            if (!nodes[n.getR()][n.getC() - 1].getVisited()) {
-                options.add(nodes[n.getR()][n.getC() - 1]);
+        if (n.col > 0) {
+            if (!nodes[n.row][n.col - 1].hasBeenVisited) {
+                options.add(nodes[n.row][n.col - 1]);
             }
         }
         return options;
