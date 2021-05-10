@@ -32,25 +32,17 @@ public class Graph {
 
     public ArrayList<Node> getUnvisitedAdjacent(Node n) {
         ArrayList<Node> options = new ArrayList<>();
-        if (n.row < nodes.length - 1) {
-            if (!nodes[n.row + 1][n.col].hasBeenVisited) {
-                options.add(nodes[n.row + 1][n.col]);
-            }
+        if (n.row < nodes.length - 1 && !nodes[n.row + 1][n.col].hasBeenVisited) {
+            options.add(nodes[n.row + 1][n.col]);
         }
-        if (n.row > 0) {
-            if (!nodes[n.row - 1][n.col].hasBeenVisited) {
-                options.add(nodes[n.row - 1][n.col]);
-            }
+        if (n.row > 0 && !nodes[n.row - 1][n.col].hasBeenVisited) {
+            options.add(nodes[n.row - 1][n.col]);
         }
-        if (n.col < nodes.length - 1) {
-            if (!nodes[n.row][n.col + 1].hasBeenVisited) {
-                options.add(nodes[n.row][n.col + 1]);
-            }
+        if (n.col < nodes.length - 1 && !nodes[n.row][n.col + 1].hasBeenVisited) {
+            options.add(nodes[n.row][n.col + 1]);
         }
-        if (n.col > 0) {
-            if (!nodes[n.row][n.col - 1].hasBeenVisited) {
-                options.add(nodes[n.row][n.col - 1]);
-            }
+        if (n.col > 0 && !nodes[n.row][n.col - 1].hasBeenVisited) {
+            options.add(nodes[n.row][n.col - 1]);
         }
         return options;
     }
