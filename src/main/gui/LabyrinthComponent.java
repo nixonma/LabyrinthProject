@@ -1,8 +1,6 @@
 package main.gui;
 import main.model.Node;
-import main.model.labyrinth.IterativeBackTrackingLabyrinth;
-import main.model.labyrinth.Labyrinth;
-import main.model.labyrinth.RecursiveBackTrackingLabyrinth;
+import main.model.labyrinth.*;
 
 import java.awt.*;
 import javax.swing.JComponent;

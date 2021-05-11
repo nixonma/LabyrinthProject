@@ -23,15 +23,10 @@ public class IterativeBackTrackingLabyrinth extends Labyrinth {
     @Override
     protected void genMaze() {
         stack = new Stack<Node>();
-        this.start = board.getNode(0, 0);
-        stack.push(start);
-        drunkWalk(1);
-    }
-
-    private void drunkWalk(int treeNum) {
+        stack.push(board.getNode(0, 0));
         while (!stack.isEmpty()) {
             Node current = stack.pop();
-            current.visit(treeNum);
+            current.visit(1);
             ArrayList<Node> options = board.getUnvisitedAdjacent(current);
             int opIndex = (int) (Math.random() * options.size());
             if (options.size() == 0) {
@@ -45,6 +40,5 @@ public class IterativeBackTrackingLabyrinth extends Labyrinth {
                 stack.push(options.get(opIndex));
             }
         }
-        return;
     }
 }
