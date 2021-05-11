@@ -38,7 +38,6 @@ public class RecursiveBackTrackingLabyrinth extends Labyrinth {
             board.addDirectionedEdge(n, options.get(opIndex));
             drunkWalk(options.get(opIndex), treeNum);
         }
-        return;
     }
 
     private Node recursiveBackTrack(Node n) {

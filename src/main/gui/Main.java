@@ -1,18 +1,27 @@
 package main.gui;
 
-import java.awt.Dimension;
-import javax.swing.JFrame;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class Main {
 
     public static final int SIZE = 800; //changes size of the window
-    public static final int SCALE = 4; //multiples of 4 work best
+    public static int SCALE;
     public static final Dimension LABYRINTH_VIEWER_SIZE = new Dimension(SIZE + 15, SIZE + 38);
+    private static StartUpSelections select;
 
     public static void main(String[] args) {
+        select = new StartUpSelections();
+    }
+
+    public static void run(){
+        String lType = select.getLabyrinthType();
+        SCALE = select.getScale();
         JFrame frame = new JFrame();
         frame.setSize(LABYRINTH_VIEWER_SIZE);
-        frame.setTitle("RecursiveBackTrackingLabyrinth");
+        frame.setTitle("Labyrinth");
         LabyrinthComponent lc = new LabyrinthComponent(SIZE);
         frame.add(lc);
         frame.setResizable(false);
