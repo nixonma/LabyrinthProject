@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 
 public class Main {
 
-    public static final int SIZE = 800;
-    public static final int SCALE = 4;
+    public static final int SIZE = 800; //changes size of the window
+    public static final int SCALE = 8; //multiples of 4 work best
     public static final Dimension LABYRINTH_VIEWER_SIZE = new Dimension(SIZE + 15, SIZE + 35);
 
     public static void main(String[] args) {
