@@ -1,5 +1,6 @@
 package main.gui;
 import main.model.Node;
+import main.model.labyrinth.IterativeBackTrackingLabyrinth;
 import main.model.labyrinth.Labyrinth;
 import main.model.labyrinth.RecursiveBackTrackingLabyrinth;
 
@@ -12,12 +13,12 @@ public class LabyrinthComponent extends JComponent {
     private Labyrinth labyrinth;
     public LabyrinthComponent(int windowSize) {
         size = (int) (windowSize/Main.SCALE);
+        this.labyrinth = new IterativeBackTrackingLabyrinth(size);
     }
 
     @Override
     protected void paintComponent(Graphics graphics) {
         Graphics2D g2 = (Graphics2D) graphics;
-        this.labyrinth = new RecursiveBackTrackingLabyrinth(size);
         displayLabyrinth(g2);
     }
 
