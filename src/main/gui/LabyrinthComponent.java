@@ -11,7 +11,7 @@ public class LabyrinthComponent extends JComponent {
     private Labyrinth labyrinth;
     public LabyrinthComponent(int windowSize) {
         size = (int) (windowSize/Main.SCALE);
-        this.labyrinth = new IterativeBackTrackingLabyrinth(size);
+        this.labyrinth = new WilsonsLabyrinth(size);
     }
 
     @Override

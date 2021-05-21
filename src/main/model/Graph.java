@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Graph {
-    Node[][] nodes;
+    public Node[][] nodes;
     HashMap<Integer, ArrayList<Node>> treeNodesMap;
 
     public Graph(int size) {
@@ -47,12 +47,56 @@ public class Graph {
         return options;
     }
 
+    public ArrayList<Node> getUnrelatedAdjacent(Node n) {
+        ArrayList<Node> options = new ArrayList<>();
+        if (n.row < nodes.length - 1 && nodes[n.row + 1][n.col].getTreeNum() != n.getTreeNum()) {
+            options.add(nodes[n.row + 1][n.col]);
+        }
+        if (n.row > 0 && nodes[n.row - 1][n.col].getTreeNum() != n.getTreeNum()) {
+            options.add(nodes[n.row - 1][n.col]);
+        }
+        if (n.col < nodes.length - 1 && nodes[n.row][n.col + 1].getTreeNum() != n.getTreeNum()) {
+            options.add(nodes[n.row][n.col + 1]);
+        }
+        if (n.col > 0 && nodes[n.row][n.col - 1].getTreeNum() != n.getTreeNum()) {
+            options.add(nodes[n.row][n.col - 1]);
+        }
+        return options;
+    }
+
     public Node getNode(int r, int c) {
         return nodes[r][c];
     }
 
     public Node findPredecessor(Node n) {
         return n.predecessor;
+    }
+
+    public ArrayList<Node> getAllNodes() {
+        ArrayList<Node> allNodes = new ArrayList<>();
+        for(Node[] nodeRow : nodes){
+            for(Node n : nodeRow){
+                allNodes.add(n);
+            }
+        }
+        return allNodes;
+    }
+
+    public ArrayList<Node> getAdjacent(Node n) {
+        ArrayList<Node> options = new ArrayList<>();
+        if (n.row < nodes.length - 1) {
+            options.add(nodes[n.row + 1][n.col]);
+        }
+        if (n.row > 0) {
+            options.add(nodes[n.row - 1][n.col]);
+        }
+        if (n.col < nodes.length - 1) {
+            options.add(nodes[n.row][n.col + 1]);
+        }
+        if (n.col > 0) {
+            options.add(nodes[n.row][n.col - 1]);
+        }
+        return options;
     }
 }
 
