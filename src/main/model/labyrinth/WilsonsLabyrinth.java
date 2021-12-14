@@ -63,7 +63,7 @@ public class WilsonsLabyrinth extends Labyrinth{
     }
 
     private void resetLoop(Node loopEnd, Node loopStart) {
-        System.out.println("resetting loop at: " + loopEnd.row + " " + loopEnd.col);
+//        System.out.println("resetting loop at: " + loopEnd.row + " " + loopEnd.col);
         Node current = loopStart.successors.get(0);
         while(!current.equals(loopEnd)) {
             Node next = current.successors.get(0);
