@@ -17,25 +17,25 @@ public class RecursiveBackTrackingLabyrinth extends Labyrinth {
     // row is y, col is x
     @Override
     protected void genMaze() {
-        this.start = board.getNode(0, 0);
+        this.start = this.getNode(0, 0);
         drunkWalk(start, 1);
     }
 
     private void drunkWalk(Node n, int treeNum) {
         n.visit(treeNum);
-        ArrayList<Node> options = board.getUnvisitedAdjacent(n);
+        ArrayList<Node> options = this.getUnvisitedAdjacent(n);
         int opIndex = (int) (Math.random() * options.size());
         if (options.size() == 0) {
             Node prevNode = recursiveBackTrack(n);
             if (prevNode == null) {
                 return;
             }
-            ArrayList<Node> prevOptions = board.getUnvisitedAdjacent(prevNode);
+            ArrayList<Node> prevOptions = this.getUnvisitedAdjacent(prevNode);
             int prevOpIndex = (int) (Math.random() * prevOptions.size());
-            board.addDirectionedEdge(prevNode, prevOptions.get(prevOpIndex));
+            this.addDirectionedEdge(prevNode, prevOptions.get(prevOpIndex));
             drunkWalk(prevNode, treeNum);
         } else {
-            board.addDirectionedEdge(n, options.get(opIndex));
+            this.addDirectionedEdge(n, options.get(opIndex));
             drunkWalk(options.get(opIndex), treeNum);
         }
         return;
@@ -46,8 +46,8 @@ public class RecursiveBackTrackingLabyrinth extends Labyrinth {
         // adjacent
         // get all adjacent nodes to n, and see if they have a directioned edge pointing
         // to n
-        Node predecessor = board.findPredecessor(n);
-        ArrayList<Node> options = board.getUnvisitedAdjacent(predecessor);
+        Node predecessor = this.findPredecessor(n);
+        ArrayList<Node> options = this.getUnvisitedAdjacent(predecessor);
         if (options.size() == 0) {
             if (predecessor.equals(this.start)) {
                 // we have recursed to the beginning and there are no more options

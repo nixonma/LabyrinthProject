@@ -23,10 +23,10 @@ public class WilsonsLabyrinth extends Labyrinth{
         System.out.println("Starting walk at: " + current.row + " " + current.col);
         while(!current.hasBeenVisited) {
             current.visit(2);
-            ArrayList<Node> options = this.board.getUnrelatedAdjacent(current);
+            ArrayList<Node> options = this.getUnrelatedAdjacent(current);
             if (options.size() == 0) {
                 Node reset = null;
-                for (Node n : board.getAdjacent(current)) {
+                for (Node n : this.getAdjacent(current)) {
                     if (!n.predecessor.equals(current)) {
                         reset = n;
                         current.successors.add(n);
@@ -43,7 +43,7 @@ public class WilsonsLabyrinth extends Labyrinth{
             } else {
                 int opIndex = (int) (Math.random() * options.size());
                 Node next = options.get(opIndex);
-                board.addDirectionedEdge(current, next);
+                this.addDirectionedEdge(current, next);
                 if(next.hasBeenVisited && next.getTreeNum() == next.getBaseNum()){
                     this.addTreeToBase(current);
                     loopErasedRandomWalk();
@@ -84,6 +84,6 @@ public class WilsonsLabyrinth extends Labyrinth{
     private Node getRandomNode(){
         int x = (int) (Math.random() * this.size);
         int y = (int) (Math.random() * this.size);
-        return this.board.getNode(x,y);
+        return this.getNode(x,y);
     }
 }

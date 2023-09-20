@@ -98,6 +98,7 @@ public class Graph {
     }
 
     public List<Node> shortestPath(Node startNode, Node endNode) {
+        int solutionDecisions = 0;
         // pulled this case out because it's O(1)
         if (this.hasEdge(startNode, endNode)) {
             ArrayList<Node> list = new ArrayList<>();
@@ -162,13 +163,17 @@ public class Graph {
         // create a list of the nodes on the path that starts at startLabel
         // and follows the smallest number on the keyToPath map, and finishes at
         // endLabel
-        ArrayList<Node> path = new ArrayList<Node>();
+        ArrayList<Node> path = new ArrayList<>();
         Node n = startNode;
         path.add(n);
         while (!n.equals(endNode)) {
             // find successor with shortest path to the end node
             int shortest = 0;
             Node shortestKey = null;
+            Set<Node> successors = n.getSuccessors();
+            if(successors.size() > 1){
+                solutionDecisions++;
+            }
             for (Node successorKey : n.getSuccessors()) {
                 if (nodeToPath.get(successorKey) > 0 && (nodeToPath.get(successorKey) < shortest || shortest == 0)) {
                     shortest = nodeToPath.get(successorKey);
@@ -186,6 +191,9 @@ public class Graph {
                 break;
             }
         }
+        System.out.println("Decisions: " + solutionDecisions);
+        System.out.println("Path Length: "+ path.size());
+        System.out.println("Complexity: " + (double) solutionDecisions/ path.size());
         return path;
     }
 }

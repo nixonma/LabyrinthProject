@@ -5,37 +5,39 @@ import main.model.Node;
 
 import java.util.List;
 
-public abstract class Labyrinth {
+public abstract class Labyrinth extends Graph{
     int size;
-    Graph board;
     Node start;
     Node end;
+    public List<Node> solution;
 
     public Labyrinth(int s) {
+        super(s);
         this.size = s;
-        board = new Graph(size);
         initBoard();
         start = getNodeFromBoard(0,0);
-        end = getNodeFromBoard(board.size - 1, board.size - 1);
-
+        end = getNodeFromBoard(this.size - 1, this.size - 1);
     }
 
     private void initBoard() {
         for (int r = 0; r < size; r++) {
             for (int c = 0; c < size; c++) {
-                board.addNode(new Node(r, c, -1));
+                this.addNode(new Node(r, c, -1));
             }
         }
         genMaze();
     }
 
     public Node getNodeFromBoard(int r, int c) {
-        return this.board.getNode(r, c);
+        return this.getNode(r, c);
+    }
+
+    public List<Node> getSolution(){
+        if(solution == null){
+            solution = this.shortestPath(start, end);
+        }
+        return solution;
     }
 
     protected abstract void genMaze();
-
-    public List<Node> getSolution(){
-        return this.board.shortestPath(start, end);
-    }
 }

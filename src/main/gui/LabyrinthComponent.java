@@ -11,10 +11,10 @@ public class LabyrinthComponent extends JComponent {
     private final int size;
     private Labyrinth labyrinth;
     private boolean showSolution;
-    public LabyrinthComponent(int windowSize, boolean solution) {
+    public LabyrinthComponent(int windowSize, boolean solution, Labyrinth l) {
         showSolution = solution;
-        this.size = (int) (windowSize/Main.SCALE);
-        this.labyrinth = new IterativeBackTrackingLabyrinth(this.size);
+        this.labyrinth = l;
+        this.size = (windowSize/Main.SCALE);
     }
 
     @Override
@@ -27,15 +27,11 @@ public class LabyrinthComponent extends JComponent {
     }
 
     private void displaySolution(Graphics2D g2) {
-        int decisions = 0;
         List<Node> solutionPath = this.labyrinth.getSolution();
         g2.setColor(Color.RED);
         for (int r = 0; r < size; r++) {
             for (int c = 0; c < size; c++) {
                 Node n = this.labyrinth.getNodeFromBoard(r, c);
-                if(n.getSuccessors().size() > 1) {
-                    decisions ++;
-                }
                 if(solutionPath.contains(n)) {
                     g2.fillRect((c * Main.SCALE) + 1, (r * Main.SCALE) + 1, Main.SCALE - 2, Main.SCALE - 2);
                     if (n.predecessor != null) {
@@ -46,8 +42,8 @@ public class LabyrinthComponent extends JComponent {
                 }
             }
         }
-        System.out.println("Decisions: "+ decisions);
-        System.out.println("Path Length: "+ solutionPath.size());
+        g2.setColor(Color.BLUE);
+        g2.fillRect( 1, 1, Main.SCALE - 2, Main.SCALE - 2);
     }
 
     public void displayLabyrinth(Graphics2D g2) {
